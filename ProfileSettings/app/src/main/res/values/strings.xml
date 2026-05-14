@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ProfileSettings</string>
+    <string name="save">Save</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="photo_title">PROFILE PHOTO</string>
+    <string name="name_title">NAME</string>
+    <string name="email_title">EMAIL</string>
+    <string name="title_title">TITLE</string>
+    <string name="location_title">LOCATION</string>
+</resources>
