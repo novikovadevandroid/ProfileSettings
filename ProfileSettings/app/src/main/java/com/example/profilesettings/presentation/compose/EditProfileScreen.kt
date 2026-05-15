@@ -1,6 +1,7 @@
 package com.example.profilesettings.presentation.compose
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -20,24 +20,46 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.outlined.Edit
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.profilesettings.R
+import com.example.profilesettings.getApplicationComponent
+import com.example.profilesettings.models.presentation.EditProfileAction
 import com.example.profilesettings.models.presentation.UiProfile
+import com.example.profilesettings.presentation.EditProfileViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EditProfileScreen() {
+
+    val component = getApplicationComponent()
+    val viewModel: EditProfileViewModel = viewModel(factory = component.getViewModelFactory())
+    val openSheetState = viewModel.bottomSheet.collectAsState(false)
+
+    LaunchedEffect(Unit) {
+        viewModel.actions.collect { action ->
+            when (action) {
+                is EditProfileAction.OpenBottomSheet -> viewModel.openBottomSheet()
+            }
+        }
+    }
+
     Scaffold(
         modifier = Modifier
             .fillMaxSize(),
@@ -48,14 +70,30 @@ fun EditProfileScreen() {
         EditProfileContent(
             UiProfile("name", "email", "title", "location"),
             innerPadding
-        )
+        ) { viewModel.emitAction(EditProfileAction.OpenBottomSheet) }
+
+        if (openSheetState.value) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = 0.45f))
+                    .clickable {
+                        viewModel.closeBottomSheet()
+                    }
+            )
+        }
+
+        if (openSheetState.value) {
+            EditPhotoBottomSheet { viewModel.closeBottomSheet() }
+        }
     }
 }
 
 @Composable
 private fun EditProfileContent(
     profile: UiProfile,
-    paddingValues: PaddingValues
+    paddingValues: PaddingValues,
+    onEditPhotoClick: () -> Unit
 ) {
     LazyColumn(
         modifier = Modifier
@@ -71,7 +109,7 @@ private fun EditProfileContent(
             )
         }
         item {
-            EditProfilePhotoItem()
+            EditProfilePhotoItem(onEditPhotoClick)
         }
         item {
             EditProfileInfoItem(
@@ -102,7 +140,9 @@ private fun EditProfileContent(
 }
 
 @Composable
-fun EditProfilePhotoItem() {
+fun EditProfilePhotoItem(
+    onEditPhotoClick: () -> Unit
+) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -113,7 +153,8 @@ fun EditProfilePhotoItem() {
         Icon(
             modifier = Modifier
                 .align(Alignment.TopEnd)
-                .padding(top = 32.dp, end = 24.dp),
+                .padding(top = 32.dp, end = 24.dp)
+                .clickable { onEditPhotoClick() },
             imageVector = Icons.Outlined.Edit,
             contentDescription = null
         )

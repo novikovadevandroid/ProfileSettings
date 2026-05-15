@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">ProfileSettings</string>
     <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="chose_photo">Choose photo</string>
+    <string name="make_photo">Make photo</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="photo_title">PROFILE PHOTO</string>
     <string name="name_title">NAME</string>
