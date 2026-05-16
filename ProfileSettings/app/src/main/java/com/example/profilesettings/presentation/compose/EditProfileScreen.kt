@@ -1,5 +1,10 @@
 package com.example.profilesettings.presentation.compose
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -76,14 +81,27 @@ fun EditProfileScreen() {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(Color.Black.copy(alpha = 0.45f))
+                    .background(Color.Black.copy(alpha = 0.5f))
                     .clickable {
                         viewModel.closeBottomSheet()
                     }
             )
         }
 
-        if (openSheetState.value) {
+        AnimatedVisibility(
+            visible = openSheetState.value,
+            enter = slideInVertically(
+                initialOffsetY = { fullHeight ->
+                    fullHeight
+                }
+            ) + fadeIn(),
+
+            exit = slideOutVertically(
+                targetOffsetY = { fullHeight ->
+                    fullHeight
+                }
+            ) + fadeOut()
+        ) {
             EditPhotoBottomSheet { viewModel.closeBottomSheet() }
         }
     }
