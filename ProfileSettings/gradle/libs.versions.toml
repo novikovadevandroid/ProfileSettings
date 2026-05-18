@@ -1,5 +1,6 @@
 [versions]
 agp = "8.13.2"
+coilCompose = "2.7.0"
 kotlin = "2.3.21"
 coreKtx = "1.18.0"
 junit = "4.13.2"
@@ -11,10 +12,12 @@ composeBom = "2026.05.00"
 dagger2 = "2.59.2"
 ksp = "2.3.7"
 lifecycle = "2.10.0"
+room = "2.8.4"
 
 [libraries]
 androidx-compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -32,6 +35,9 @@ dagger2 = { group = "com.google.dagger", name = "dagger", version.ref = "dagger2
 dagger2-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger2" }
 dagger2-processor = { group = "com.google.dagger", name = "dagger-android-processor", version.ref = "dagger2" }
 lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+room = {group = "androidx.room", name = "room-runtime", version.ref = "room"}
+room-compiler = {group="androidx.room", name = "room-compiler", version.ref ="room"}
+room-ktx = {group = "androidx.room", name = "room-ktx", version.ref = "room"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
