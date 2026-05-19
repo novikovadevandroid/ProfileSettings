@@ -1,6 +1,7 @@
-package com.example.profilesettings.models.presentation
+package com.example.profilesettings.models.domain
 
-data class UiProfile(
+data class ProfileEntity(
+    val id: Int,
     val name: String,
     val email: String,
     val title: String,

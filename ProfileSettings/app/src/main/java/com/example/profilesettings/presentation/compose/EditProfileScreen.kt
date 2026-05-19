@@ -46,7 +46,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.profilesettings.R
 import com.example.profilesettings.getApplicationComponent
 import com.example.profilesettings.models.presentation.EditProfileAction
-import com.example.profilesettings.models.presentation.UiProfile
+import com.example.profilesettings.models.presentation.ProfileUi
 import com.example.profilesettings.presentation.EditProfileViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -73,7 +73,7 @@ fun EditProfileScreen() {
         }
     ) { innerPadding ->
         EditProfileContent(
-            UiProfile("name", "email", "title", "location"),
+            ProfileUi("name", "email", "title", "location"),
             innerPadding
         ) { viewModel.emitAction(EditProfileAction.OpenBottomSheet) }
 
@@ -109,7 +109,7 @@ fun EditProfileScreen() {
 
 @Composable
 private fun EditProfileContent(
-    profile: UiProfile,
+    profile: ProfileUi,
     paddingValues: PaddingValues,
     onEditPhotoClick: () -> Unit
 ) {
