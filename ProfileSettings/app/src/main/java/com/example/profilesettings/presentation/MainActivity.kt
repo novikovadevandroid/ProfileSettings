@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.profilesettings.presentation.compose.EditProfileScreen
+import com.example.profilesettings.presentation.compose.edit_profile.EditProfileScreen
 import com.example.profilesettings.presentation.ui.theme.ProfileSettingsTheme
 
 class MainActivity : ComponentActivity() {

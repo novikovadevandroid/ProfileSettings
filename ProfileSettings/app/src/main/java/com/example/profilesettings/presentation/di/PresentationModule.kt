@@ -1,7 +1,7 @@
 package com.example.profilesettings.presentation.di
 
 import androidx.lifecycle.ViewModel
-import com.example.profilesettings.presentation.EditProfileViewModel
+import com.example.profilesettings.presentation.viewmodel.EditProfileViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

@@ -1,4 +1,4 @@
-package com.example.profilesettings.presentation.compose
+package com.example.profilesettings.presentation.compose.edit_profile
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

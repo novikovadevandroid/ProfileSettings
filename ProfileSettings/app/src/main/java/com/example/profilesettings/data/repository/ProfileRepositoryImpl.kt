@@ -3,19 +3,25 @@ package com.example.profilesettings.data.repository
 import com.example.profilesettings.data.converter.toDbModel
 import com.example.profilesettings.data.converter.toEntity
 import com.example.profilesettings.data.local.ProfileDao
-import com.example.profilesettings.domain.ProfileRepository
+import com.example.profilesettings.domain.repository.ProfileRepository
 import com.example.profilesettings.models.domain.ProfileEntity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class ProfileRepositoryImpl @Inject constructor(
     private val dao: ProfileDao
 ) : ProfileRepository {
     override suspend fun saveProfile(profile: ProfileEntity) {
-        dao.saveProfile(profile.toDbModel())
+        withContext(Dispatchers.IO) {
+            dao.saveProfile(profile.toDbModel())
+        }
     }
 
-    override suspend fun getProfile(): ProfileEntity? {
-        return dao.getProfile()?.toEntity()
+    override fun getProfile(): Flow<ProfileEntity?> {
+        return dao.getProfile().map { it?.toEntity() }
     }
 
     override suspend fun updateProfile(
@@ -25,6 +31,8 @@ class ProfileRepositoryImpl @Inject constructor(
         title: String,
         location: String
     ) {
-        dao.updateProfile(id, name, email, title, location)
+        withContext(Dispatchers.IO) {
+            dao.updateProfile(id, name, email, title, location)
+        }
     }
 }

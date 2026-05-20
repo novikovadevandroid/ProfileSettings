@@ -1,4 +1,4 @@
-package com.example.profilesettings.presentation
+package com.example.profilesettings.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

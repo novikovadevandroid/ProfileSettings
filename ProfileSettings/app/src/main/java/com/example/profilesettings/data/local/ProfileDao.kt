@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.profilesettings.models.data.ProfileDbModel
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProfileDao {
@@ -13,7 +14,7 @@ interface ProfileDao {
     suspend fun saveProfile(profileDbModel: ProfileDbModel)
 
     @Query("SELECT * FROM profile LIMIT 1")
-    suspend fun getProfile(): ProfileDbModel?
+    fun getProfile(): Flow<ProfileDbModel?>
 
     @Query(
         """

@@ -10,4 +10,7 @@
     <string name="email_title">EMAIL</string>
     <string name="title_title">TITLE</string>
     <string name="location_title">LOCATION</string>
+    <string name="empty_data">Empty</string>
+    <string name="error">Something wrong!</string>
+    <string name="try_again">TRY AGAIN</string>
 </resources>

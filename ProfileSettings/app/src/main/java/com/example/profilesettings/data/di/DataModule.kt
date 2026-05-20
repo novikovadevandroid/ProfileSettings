@@ -5,7 +5,7 @@ import com.example.profilesettings.data.local.AppDatabase
 import com.example.profilesettings.data.local.ProfileDao
 import com.example.profilesettings.data.repository.ProfileRepositoryImpl
 import com.example.profilesettings.di.ApplicationScope
-import com.example.profilesettings.domain.ProfileRepository
+import com.example.profilesettings.domain.repository.ProfileRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
