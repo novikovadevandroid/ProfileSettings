@@ -1,0 +1,25 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color purple_200
+color purple_500
+color purple_700
+color teal_200
+color teal_700
+color white
+string app_name
+string cancel
+string chose_photo
+string edit_profile
+string email_title
+string empty_data
+string error
+string location_title
+string make_photo
+string name_title
+string photo_title
+string save
+string title_title
+string try_again
+string update
+style Theme.ProfileSettings
