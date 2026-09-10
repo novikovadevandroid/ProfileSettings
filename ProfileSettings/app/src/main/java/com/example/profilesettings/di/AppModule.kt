@@ -1,9 +1,8 @@
 package com.example.profilesettings.di
 
 import android.content.Context
-import com.example.profilesettings.data.local.AppDatabase
-import com.example.profilesettings.feature.profile.api.ProfileDao
-import com.example.profilesettings.feature.profile.impl.di.ProfileScope
+import com.example.profilesettings.core.database.AppDatabase
+import com.example.profilesettings.core.database.ProfileDao
 import dagger.Module
 import dagger.Provides
 
@@ -14,7 +13,7 @@ internal interface AppModule {
         @Provides
         @ApplicationScope
         fun provideProfileDao(context: Context): ProfileDao {
-            return AppDatabase.getInstance(context).profileDao()
+            return AppDatabase.getInstance(context).profilePageDao()
         }
     }
 }

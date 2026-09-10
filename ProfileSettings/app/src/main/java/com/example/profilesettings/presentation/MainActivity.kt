@@ -20,7 +20,8 @@ class MainActivity : ComponentActivity() {
 
             AppNavHost(
                 navController = navController,
-                dependencies = appComponent
+                profilePageDependencies = appComponent,
+                settingsProfileDependencies = appComponent
             )
         }
     }

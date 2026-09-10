@@ -2,13 +2,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.profilesettings.feature.profile.api.ProfileDao
-import com.example.profilesettings.feature.profile.api.ProfileDbModel
+import com.example.profilesettings.core.database.AppDatabase
+import com.example.profilesettings.feature.profile.page.impl.data.local.ProfilePageDbModel
 
-@Database(entities = [ProfileDbModel::class], version = 1, exportSchema = false)
+@Database(entities = [ProfilePageDbModel::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun profileDao(): ProfileDao
+    abstract fun profileDao(): SettingsProfileDao
 
     companion object {
 
