@@ -21,6 +21,12 @@ dependencyResolutionManagement {
 
 rootProject.name = "EditProfileSettings"
 include(":app")
-include(":core:common")
-include(":feature:profile:api")
-include(":feature:profile:impl")
+include(":core:database")
+include(":core:viewmodel")
+include(":core:design")
+include(":feature:profile:core:api")
+include(":feature:profile:core:impl")
+include(":feature:profile:page:api")
+include(":feature:profile:page:impl")
+include(":feature:profile:settings:api")
+include(":feature:profile:settings:impl")

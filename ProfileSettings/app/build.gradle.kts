@@ -46,8 +46,17 @@ android {
 }
 
 dependencies {
-    implementation(project(":feature:profile:impl"))
-    implementation(project(":feature:profile:api"))
+    implementation(project(":core:database"))
+    implementation(project(":core:viewmodel"))
+
+    implementation(project(":feature:profile:core:api"))
+    implementation(project(":feature:profile:core:impl"))
+
+    implementation(project(":feature:profile:page:api"))
+    implementation(project(":feature:profile:page:impl"))
+
+    implementation(project(":feature:profile:settings:api"))
+    implementation(project(":feature:profile:settings:impl"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

@@ -3,19 +3,25 @@ package com.example.profilesettings.presentation.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.example.profilesettings.feature.profile.api.ProfileDependencies
-import com.example.profilesettings.feature.profile.api.navigation.EditProfileDestination
-import com.example.profilesettings.feature.profile.impl.presentation.navigation.editProfileScreen
+import com.example.profilesettings.feature.profile.page.api.ProfilePageDependencies
+import com.example.profilesettings.feature.profile.page.api.navigation.ProfilePageDestination
+import com.example.profilesettings.feature.profile.page.impl.presentation.navigation.profilePageScreen
+import com.example.profilesettings.feature.profile.settings.api.SettingsProfileDependencies
+import com.example.profilesettings.feature.profile.settings.api.navigation.SettingsProfileDestination
+import com.example.profilesettings.feature.profile.settings.impl.presentation.navigation.settingsProfileScreen
 
 @Composable
 fun AppNavHost(
     navController: NavHostController,
-    dependencies: ProfileDependencies
+    profilePageDependencies: ProfilePageDependencies,
+    settingsProfileDependencies: SettingsProfileDependencies
 ) {
     NavHost(
         navController = navController,
-        startDestination = EditProfileDestination.ROUTE
+        startDestination = ProfilePageDestination.ROUTE
     ) {
-        editProfileScreen(dependencies)
+        profilePageScreen(profilePageDependencies, navController)
+
+        settingsProfileScreen(settingsProfileDependencies)
     }
 }
